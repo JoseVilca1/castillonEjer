@@ -5,15 +5,13 @@ app = Flask(__name__)
 
 # 🔧 CONEXIÓN A SQL SERVER
 conexion = pyodbc.connect(
-    'DRIVER={FreeTDS};'
+    'DRIVER={ODBC Driver 18 for SQL Server};'
     'SERVER=26.95.196.200;'
-    'PORT=1433;'
     'DATABASE=CASTILLONV2;'
     'UID=sa;'
     'PWD=Castillon1234+;'
-    'TDS_Version=8.0;'
+    'Encrypt=no;'
 )
-
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
