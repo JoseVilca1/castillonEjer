@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Castillon</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form method="POST">
+        <label>Usuario:</label><br>
+        <input type="text" name="usuario" required><br><br>
+        <label>Clave:</label><br>
+        <input type="password" name="clave" required><br><br>
+        <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <p style="color:red;">{{ mensaje }}</p>
+
+    {% if productos %}
+        <h3>Productos disponibles:</h3>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Marca</th>
+            </tr>
+            {% for p in productos %}
+            <tr>
+                <td>{{ p[0] }}</td>
+                <td>{{ p[1] }}</td>
+                <td>${{ "%.2f"|format(p[2]) }}</td>
+                <td>{{ p[3] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
