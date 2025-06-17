@@ -1,16 +1,25 @@
 from flask import Flask, render_template, request
 import pyodbc
+import platform
 
 app = Flask(__name__)
 
-# 🔧 CONEXIÓN A SQL SERVER
+# 🔍 Detectar entorno y elegir driver correcto
+if platform.system() == 'Linux':
+    DRIVER_NAME = '{ODBC Driver 18 for SQL Server}'
+    ENCRYPT = 'Encrypt=no;'
+else:
+    DRIVER_NAME = '{ODBC Driver 17 for SQL Server}'  # o el que tengas en tu PC
+    ENCRYPT = ''  # en Windows local no hace falta
+
+# 🔧 Conexión SQL Server compatible con Windows y Render
 conexion = pyodbc.connect(
-    'DRIVER={ODBC Driver 18 for SQL Server};'
+    f'DRIVER={DRIVER_NAME};'
     'SERVER=26.95.196.200;'
     'DATABASE=CASTILLONV2;'
     'UID=sa;'
     'PWD=Castillon1234+;'
-    'Encrypt=no;'
+    f'{ENCRYPT}'
 )
 
 @app.route('/', methods=['GET', 'POST'])

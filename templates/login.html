@@ -1,23 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Login Castillon</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            width: 350px;
+            margin: 50px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #2b72ff;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1a54d2;
+        }
+
+        .mensaje {
+            text-align: center;
+            color: red;
+            margin-top: 10px;
+        }
+
+        .productos-container {
+            width: 90%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        th {
+            background: #2b72ff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        h3 {
+            color: #2b2b2b;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="POST">
-        <label>Usuario:</label><br>
-        <input type="text" name="usuario" required><br><br>
-        <label>Clave:</label><br>
-        <input type="password" name="clave" required><br><br>
-        <button type="submit">Iniciar sesión</button>
-    </form>
 
-    <p style="color:red;">{{ mensaje }}</p>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="POST">
+            <label>Usuario:</label>
+            <input type="text" name="usuario" required>
+
+            <label>Clave:</label>
+            <input type="password" name="clave" required>
+
+            <button type="submit">Iniciar sesión</button>
+        </form>
+
+        {% if mensaje %}
+        <div class="mensaje">{{ mensaje }}</div>
+        {% endif %}
+    </div>
 
     {% if productos %}
+    <div class="productos-container">
         <h3>Productos disponibles:</h3>
-        <table border="1" cellpadding="5">
+        <table>
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
@@ -33,6 +132,8 @@
             </tr>
             {% endfor %}
         </table>
+    </div>
     {% endif %}
+
 </body>
 </html>
