@@ -14,12 +14,14 @@ else:
 
 # 🔧 Conexión SQL Server compatible con Windows y Render
 conexion = pyodbc.connect(
-    f'DRIVER={DRIVER_NAME};'
+    'DRIVER=/usr/lib/x86_64-linux-gnu/odbc/libtdsodbc.so;'
     'SERVER=26.95.196.200;'
+    'PORT=1433;'
     'DATABASE=CASTILLONV2;'
     'UID=sa;'
     'PWD=Castillon1234+;'
-    f'{ENCRYPT}'
+    'TDS_Version=8.0;'
+    'Encrypt=no;'
 )
 
 @app.route('/', methods=['GET', 'POST'])
